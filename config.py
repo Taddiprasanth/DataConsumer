@@ -2,8 +2,10 @@ import redis
 import os
 
 redis_client = redis.StrictRedis(
-    host=os.getenv('REDIS_HOST', 'localhost'),  # Default to 'localhost'
-    port=6379,
+    host='redis-18698.c280.us-central1-2.gce.redns.redis-cloud.com',
+    port=18698,
+    username="default",
+    password="BKYiUHXCZv5rL1hI78j5Ph92kog2ZU6g",
     db=0
 )
 
