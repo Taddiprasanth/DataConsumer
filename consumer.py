@@ -1,9 +1,9 @@
+import redis
 from kafka import KafkaConsumer
 from redis import StrictRedis
 import json
 
-# Connect to Redis
-redis_client = StrictRedis(
+redis_client = redis.StrictRedis(
     host='redis-18698.c280.us-central1-2.gce.redns.redis-cloud.com',
     port=18698,
     username="default",
@@ -26,8 +26,11 @@ def consume_from_kafka():
         print(f"Received data: {data}")  # Debug: Print received data
 
         if 'key' in data and 'value' in data:
-            redis_client.set(data['key'], data['value'])
-            print(f"Data saved to Redis: key={data['key']}, value={data['value']}")  # Debug: Data saved to Redis
+            # Serialize the value to a JSON string
+            serialized_value = json.dumps(data['value'])
+            # Use HSET to store data in Redis as a hash
+            redis_client.hset('my_hash', data['key'], serialized_value)
+            print(f"Data saved to Redis as hash: key={data['key']}, value={serialized_value}")  # Debug: Data saved to Redis
         else:
             print("Received data does not contain 'key' and 'value' fields")
 
