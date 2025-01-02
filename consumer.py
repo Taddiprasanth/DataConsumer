@@ -4,10 +4,8 @@ from redis import StrictRedis
 import json
 
 redis_client = redis.StrictRedis(
-    host='redis-18698.c280.us-central1-2.gce.redns.redis-cloud.com',
-    port=18698,
-    username="default",
-    password="BKYiUHXCZv5rL1hI78j5Ph92kog2ZU6g",
+    host='redis.finvedic.in',
+    port=6379,
     db=0
 )
 
