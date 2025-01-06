@@ -1,12 +1,10 @@
 #test.py
 import redis
 
-r = redis.Redis(
-    host='redis-18698.c280.us-central1-2.gce.redns.redis-cloud.com',
-    port=18698,
-    decode_responses=True,
-    username="default",
-    password="BKYiUHXCZv5rL1hI78j5Ph92kog2ZU6g",
+r = redis.StrictRedis(
+    host='redis.finvedic.in',
+    port=6379,
+    db=0
 )
 
 success = r.set('foo', 'bar')
